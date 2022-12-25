@@ -1,11 +1,7 @@
 package advertiser.model;
 
-import advertiser.payload.AdPayload;
 import advertiser.payload.AdSetPayload;
-import advertiser.payload.CategoryPayload;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,7 +9,8 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdSet {
@@ -21,21 +18,18 @@ public class AdSet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
-    private List<Category> categories;
-    @OneToMany
-    private List<Ad> ads;
+    private List<Keyword> keywords;
+    @ManyToOne
+    private Campaign campaign;
 
     public AdSetPayload toPayload() {
         return new AdSetPayload(
                 getId(),
-                getCategories()
+                getKeywords()
                         .stream()
-                        .map(Category::toPayload)
+                        .map(Keyword::toPayload)
                         .collect(Collectors.toList()),
-                getAds()
-                        .stream()
-                        .map(Ad::toPayload)
-                        .collect(Collectors.toList())
+                getCampaign().toPayload()
         );
     }
 }

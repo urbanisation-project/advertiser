@@ -2,10 +2,11 @@ package advertiser.payload;
 
 import advertiser.model.Advertiser;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdvertiserPayload {

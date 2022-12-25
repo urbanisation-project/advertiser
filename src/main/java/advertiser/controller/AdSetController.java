@@ -1,5 +1,6 @@
 package advertiser.controller;
 
+import advertiser.payload.AdPayload;
 import advertiser.payload.AdSetPayload;
 import advertiser.service.AdSetService;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/api/adSets")
 public class AdSetController {
-    private AdSetService adSetService;
+    private final AdSetService adSetService;
 
     public AdSetController(AdSetService adSetService) {
         this.adSetService = adSetService;
@@ -34,5 +35,9 @@ public class AdSetController {
     @PutMapping("/update")
     public AdSetPayload update(@RequestBody AdSetPayload adSet){
         return adSetService.update(adSet);
+    }
+    @GetMapping("/{adSetId}/ads")
+    public List<AdPayload> getAdsByAdSetId(@PathVariable Long adSetId){
+        return adSetService.findAdsByAdSetId(adSetId);
     }
 }

@@ -1,17 +1,15 @@
 package advertiser.model;
 
 import advertiser.payload.AdPayload;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ad {
@@ -24,8 +22,9 @@ public class Ad {
     private Date startDate;
     private Date endDate;
     private String description;
-
+    @ManyToOne
+    private AdSet adSet;
     public AdPayload toPayload(){
-        return new AdPayload(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription());
+        return new AdPayload(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toPayload());
     }
 }

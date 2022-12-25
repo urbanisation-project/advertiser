@@ -2,21 +2,18 @@ package advertiser.payload;
 
 import advertiser.model.Campaign;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
-
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CampaignPayload {
     private Long id;
     private AdvertiserPayload owner;
     private String name;
-    private List<AdSetPayload> adSets;
     private String objective;
     private Double budget;
 
@@ -25,7 +22,6 @@ public class CampaignPayload {
                 getId(),
                 getOwner().toEntity(),
                 getName(),
-                getAdSets().stream().map(AdSetPayload::toEntity).collect(Collectors.toList()),
                 getObjective(),
                 getBudget()
         );

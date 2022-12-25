@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/api/advertisers")
 public class AdvertiserController {
-    private AdvertiserService adService;
+    private final AdvertiserService adService;
 
     public AdvertiserController(AdvertiserService adService) {
         this.adService = adService;

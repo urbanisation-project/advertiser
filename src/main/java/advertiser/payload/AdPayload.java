@@ -2,13 +2,13 @@ package advertiser.payload;
 
 import advertiser.model.Ad;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdPayload {
@@ -19,8 +19,9 @@ public class AdPayload {
     private Date startDate;
     private Date endDate;
     private String description;
+    private AdSetPayload adSet;
 
     public Ad toEntity(){
-        return new Ad(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription());
+        return new Ad(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toEntity());
     }
 }

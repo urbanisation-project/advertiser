@@ -2,18 +2,26 @@ package advertiser.service.impl;
 
 import advertiser.model.Ad;
 import advertiser.payload.AdPayload;
+import advertiser.payload.AdSetPayload;
+import advertiser.payload.KeywordPayload;
 import advertiser.repository.AdRepository;
 import advertiser.service.AdService;
+import advertiser.service.AdSetService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Service
 public class AdServiceImpl implements AdService {
     private AdRepository adRepository;
+    private AdSetService adSetService;
 
-    public AdServiceImpl(AdRepository adRepository) {
+    public AdServiceImpl(AdRepository adRepository,@Lazy AdSetService adSetService) {
         this.adRepository = adRepository;
+        this.adSetService = adSetService;
     }
 
     @Override
@@ -38,11 +46,29 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public boolean deleteById(Long adId) {
-        try{
+        try {
             adRepository.deleteById(adId);
             return true;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return false;
         }
+    }
+
+    @Override
+    public List<AdPayload> findAdsByAdSet(AdSetPayload adSet) {
+        return adRepository.findAdsByAdSet(adSet.toEntity()).stream().map(Ad::toPayload).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AdPayload> findAdsByKeywords(List<KeywordPayload> keywords) {
+        List<AdSetPayload> adSets=new ArrayList<>();
+        List<AdPayload> ads=new ArrayList<>();
+        for(KeywordPayload keyword:keywords){
+            adSets.addAll(adSetService.findAdSetsByKeyword(keyword));
+        }
+        for(AdSetPayload adSet:adSets){
+            ads.addAll(findAdsByAdSet(adSet));
+        }
+        return ads;
     }
 }

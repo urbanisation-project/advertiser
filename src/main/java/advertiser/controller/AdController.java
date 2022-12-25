@@ -1,6 +1,7 @@
 package advertiser.controller;
 
 import advertiser.payload.AdPayload;
+import advertiser.payload.KeywordPayload;
 import advertiser.service.AdService;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/api/ads")
 public class AdController {
-    private AdService adService;
+    private final AdService adService;
 
     public AdController(AdService adService) {
         this.adService = adService;
@@ -34,5 +35,9 @@ public class AdController {
     @PutMapping("/update")
     public AdPayload update(@RequestBody AdPayload ad){
         return adService.update(ad);
+    }
+    @PutMapping("/keywords")
+    public List<AdPayload> getAdsByKeywords(@RequestBody List<KeywordPayload> keywords){
+        return adService.findAdsByKeywords(keywords);
     }
 }
