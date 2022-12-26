@@ -20,8 +20,17 @@ public class AdPayload {
     private Date endDate;
     private String description;
     private AdSetPayload adSet;
+    private Integer visitorsCount;
 
     public Ad toEntity(){
-        return new Ad(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toEntity());
+        return new Ad(
+                getId(),
+                getName(),
+                getResource(),
+                getStartDate(),
+                getEndDate(),
+                getDescription(),
+                getAdSet().toEntity(),
+                getVisitorsCount());
     }
 }

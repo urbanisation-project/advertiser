@@ -40,4 +40,12 @@ public class AdController {
     public List<AdPayload> getAdsByKeywords(@RequestBody List<KeywordPayload> keywords){
         return adService.findAdsByKeywords(keywords);
     }
+    @GetMapping("/{adId}/counts")
+    public Integer getAdVisitorsCount(@PathVariable Long adId){
+        return adService.getAdVisitorsCount(adId);
+    }
+    @GetMapping("/{adId}/update/counts")
+    public void updateAdVisitorsCount(@PathVariable Long adId){
+        adService.updateAdVisitorsCount(adId);
+    }
 }

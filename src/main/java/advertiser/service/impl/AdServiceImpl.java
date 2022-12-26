@@ -71,4 +71,16 @@ public class AdServiceImpl implements AdService {
         }
         return ads;
     }
+
+    @Override
+    public Integer getAdVisitorsCount(Long adId) {
+        return findById(adId).getVisitorsCount();
+    }
+
+    @Override
+    public Integer updateAdVisitorsCount(Long adId) {
+        AdPayload ad = findById(adId);
+        ad.setVisitorsCount(ad.getVisitorsCount()+1);
+        return update(ad).getVisitorsCount();
+    }
 }

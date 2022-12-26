@@ -24,7 +24,9 @@ public class Ad {
     private String description;
     @ManyToOne
     private AdSet adSet;
+    private Integer visitorsCount;
+
     public AdPayload toPayload(){
-        return new AdPayload(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toPayload());
+        return new AdPayload(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toPayload(),getVisitorsCount());
     }
 }

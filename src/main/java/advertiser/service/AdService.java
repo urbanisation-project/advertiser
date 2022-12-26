@@ -16,4 +16,8 @@ public interface AdService {
     List<AdPayload> findAdsByAdSet(AdSetPayload adSet);
 
     List<AdPayload> findAdsByKeywords(List<KeywordPayload> keywords);
+
+    Integer getAdVisitorsCount(Long adId);
+
+    Integer updateAdVisitorsCount(Long adId);
 }
