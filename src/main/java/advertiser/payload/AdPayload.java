@@ -15,7 +15,7 @@ public class AdPayload {
     private Long id;
     private String name;
     //private Resource resource;
-    private String resource;
+    private AdImagePayload resource;
     private Date startDate;
     private Date endDate;
     private String description;
@@ -26,7 +26,7 @@ public class AdPayload {
         return new Ad(
                 getId(),
                 getName(),
-                getResource(),
+                getResource().toEntity(),
                 getStartDate(),
                 getEndDate(),
                 getDescription(),

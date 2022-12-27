@@ -18,7 +18,8 @@ public class Ad {
     private Long id;
     private String name;
     //private Resource resource;
-    private String resource;
+    @OneToOne(cascade = CascadeType.ALL)
+    private AdImage resource;
     private Date startDate;
     private Date endDate;
     private String description;
@@ -27,6 +28,6 @@ public class Ad {
     private Integer visitorsCount;
 
     public AdPayload toPayload(){
-        return new AdPayload(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toPayload(),getVisitorsCount());
+        return new AdPayload(getId(), getName(), getResource().toPayload(), getStartDate(), getEndDate(), getDescription(), getAdSet().toPayload(),getVisitorsCount());
     }
 }
