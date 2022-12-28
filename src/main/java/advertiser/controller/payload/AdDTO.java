@@ -1,10 +1,10 @@
-package advertiser.payload;
+package advertiser.controller.payload;
 
-import advertiser.model.Ad;
-import advertiser.model.Image;
+import advertiser.payload.AdSetPayload;
 import lombok.AllArgsConstructor;
-import lombok.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
@@ -12,22 +12,20 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdPayload {
+public class AdDTO {
     private Long id;
     private String name;
-    //private Resource resource;
-    private Image resource;
     private Date startDate;
     private Date endDate;
     private String description;
     private AdSetPayload adSet;
     private Integer visitorsCount;
 
-    public Ad toEntity(){
-        return new Ad(
+    public advertiser.model.Ad toEntity(){
+        return new advertiser.model.Ad(
                 getId(),
                 getName(),
-                getResource(),
+                null,
                 getStartDate(),
                 getEndDate(),
                 getDescription(),

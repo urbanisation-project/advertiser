@@ -17,9 +17,9 @@ public class AdSet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Keyword> keywords;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Campaign campaign;
 
     public AdSetPayload toPayload() {
