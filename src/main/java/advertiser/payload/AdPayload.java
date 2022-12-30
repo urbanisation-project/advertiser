@@ -21,7 +21,7 @@ public class AdPayload {
     private Date endDate;
     private String description;
     private AdSetPayload adSet;
-    private Integer visitorsCount;
+    private int visitorsCount;
 
     public Ad toEntity(){
         return new Ad(

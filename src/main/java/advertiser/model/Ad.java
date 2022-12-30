@@ -24,7 +24,7 @@ public class Ad {
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     private AdSet adSet;
-    private Integer visitorsCount;
+    private int visitorsCount;
 
     public AdPayload toPayload(){
         return new AdPayload(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toPayload(),getVisitorsCount());

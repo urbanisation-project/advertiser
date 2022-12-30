@@ -68,7 +68,7 @@ public class AdController {
     public advertiser.payload.AdPayload update(@RequestBody advertiser.payload.AdPayload ad){
         return adService.update(ad);
     }
-    @PutMapping("/keywords")
+    @PostMapping("/keywords")
     public List<advertiser.payload.AdPayload> getAdsByKeywords(@RequestBody List<KeywordPayload> keywords){
         return adService.findAdsByKeywords(keywords);
     }
