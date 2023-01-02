@@ -30,8 +30,6 @@ public class AdController {
                 ad.getId(),
                 ad.getName(),
                 null,
-                ad.getStartDate(),
-                ad.getEndDate(),
                 ad.getDescription(),
                 ad.getAdSet(),
                 ad.getVisitorsCount()

@@ -15,8 +15,6 @@ import java.util.Date;
 public class AdDTO {
     private Long id;
     private String name;
-    private Date startDate;
-    private Date endDate;
     private String description;
     private AdSetPayload adSet;
     private Integer visitorsCount;
@@ -26,8 +24,6 @@ public class AdDTO {
                 getId(),
                 getName(),
                 null,
-                getStartDate(),
-                getEndDate(),
                 getDescription(),
                 getAdSet().toEntity(),
                 getVisitorsCount());

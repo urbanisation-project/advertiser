@@ -17,8 +17,6 @@ public class AdPayload {
     private String name;
     //private Resource resource;
     private Image resource;
-    private Date startDate;
-    private Date endDate;
     private String description;
     private AdSetPayload adSet;
     private int visitorsCount;
@@ -28,8 +26,6 @@ public class AdPayload {
                 getId(),
                 getName(),
                 getResource(),
-                getStartDate(),
-                getEndDate(),
                 getDescription(),
                 getAdSet().toEntity(),
                 getVisitorsCount());

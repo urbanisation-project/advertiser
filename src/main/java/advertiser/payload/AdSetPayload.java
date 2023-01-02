@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class AdSetPayload {
     private Long id;
+    private String name;
     private List<KeywordPayload> keywords;
     private CampaignPayload campaign;
 
@@ -35,6 +36,7 @@ public class AdSetPayload {
         }
         return new AdSet(
                 getId(),
+                getName(),
                 keywordsList,
                 getCampaign().toEntity()
         );

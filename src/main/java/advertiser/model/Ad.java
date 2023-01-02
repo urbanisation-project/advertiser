@@ -19,14 +19,12 @@ public class Ad {
     private String name;
     @OneToOne(optional = true,cascade = CascadeType.ALL)
     private Image resource;
-    private Date startDate;
-    private Date endDate;
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     private AdSet adSet;
     private int visitorsCount;
 
     public AdPayload toPayload(){
-        return new AdPayload(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toPayload(),getVisitorsCount());
+        return new AdPayload(getId(), getName(), getResource(), getDescription(), getAdSet().toPayload(),getVisitorsCount());
     }
 }

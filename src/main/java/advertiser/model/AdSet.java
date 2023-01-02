@@ -17,6 +17,7 @@ public class AdSet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Keyword> keywords;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -25,6 +26,7 @@ public class AdSet {
     public AdSetPayload toPayload() {
         return new AdSetPayload(
                 getId(),
+                getName(),
                 getKeywords()
                         .stream()
                         .map(Keyword::toPayload)
