@@ -42,10 +42,11 @@ public class AdController {
         Image image = ad.getResource();
         return ResponseEntity.ok().contentType(MediaType.valueOf(image.getFileType())).body(image.getData());
     }
-    @PutMapping("/{adId}")
+    @PostMapping("/{adId}/save/image")
     public void addImageToAd(@PathVariable Long adId , @RequestBody MultipartFile file){
         advertiser.payload.AdPayload ad = adService.findById(adId);
         Image image = Image.buildImage(file);
+        image.setFileType("image/jpeg");
         ad.setResource(imageService.save(image));
         adService.save(ad);
     }
