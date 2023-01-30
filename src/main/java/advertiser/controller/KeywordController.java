@@ -34,7 +34,7 @@ public class KeywordController {
     public KeywordPayload update(@RequestBody KeywordPayload keyword){
         return keywordService.update(keyword);
     }
-    @PostMapping("/keywords")
+    @PostMapping("/by-names")
     public List<KeywordPayload> getKeywordsByNames(@RequestBody List<String> names){
         return keywordService.findKeywordsByNames(names);
     }

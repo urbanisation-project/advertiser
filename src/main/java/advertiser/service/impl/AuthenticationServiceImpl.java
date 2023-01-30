@@ -1,8 +1,9 @@
-package advertiser.service;
+package advertiser.service.impl;
 
 import advertiser.payload.AdvertiserPayload;
 import advertiser.payload.Credentials;
 import advertiser.repository.AdvertiserRepository;
+import advertiser.service.AuthenticationService;
 import org.springframework.stereotype.Service;
 
 @Service

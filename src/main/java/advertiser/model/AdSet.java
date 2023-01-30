@@ -17,14 +17,16 @@ public class AdSet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Keyword> keywords;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Campaign campaign;
 
     public AdSetPayload toPayload() {
         return new AdSetPayload(
                 getId(),
+                getName(),
                 getKeywords()
                         .stream()
                         .map(Keyword::toPayload)

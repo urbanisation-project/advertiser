@@ -17,16 +17,14 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    //private Resource resource;
-    private String resource;
-    private Date startDate;
-    private Date endDate;
+    @OneToOne(optional = true,cascade = CascadeType.ALL)
+    private Image resource;
     private String description;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private AdSet adSet;
-    private Integer visitorsCount;
+    private int visitorsCount;
 
     public AdPayload toPayload(){
-        return new AdPayload(getId(), getName(), getResource(), getStartDate(), getEndDate(), getDescription(), getAdSet().toPayload(),getVisitorsCount());
+        return new AdPayload(getId(), getName(), getResource(), getDescription(), getAdSet().toPayload(),getVisitorsCount());
     }
 }
